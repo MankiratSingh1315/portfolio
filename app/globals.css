@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 .heading-lg {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 500;
   line-height: 1;
 
   @media screen(md) {
-    font-size: 6rem;
+    font-size: 5rem;
   }
 
   @media screen(lg) {
-    font-size: 8rem;
+    font-size: 7rem;
   }
 }
 
@@ -35,6 +35,7 @@ body{
     background-repeat: repeat;
     background-size: auto;
     mix-blend-mode: difference;
+    background-color: #030712;
 }
 
 .hero-heading {
