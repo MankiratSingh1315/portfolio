@@ -1,5 +1,6 @@
-import { motion, useScroll, useTransform } from "motion/react"; // Changed import to framer-motion
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "motion/react"; // Changed import to framer-motion
 import { use, useEffect, useMemo, useRef, useState } from "react";
+import Button from "./components/Button";
 
 export const PROJECTS = [
     {
@@ -64,12 +65,26 @@ export default function Projects() {
     }, []);
 
     const [currProjIndex, setcurr] = useState(0);
+    const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+    const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        setTooltipPosition({ x: e.clientX, y: e.clientY + 10 });
+    };
+
+    const handleMouseEnter = (skill: string) => {
+        setHoveredSkill(skill);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredSkill(null);
+    };
 
     useEffect(() => {
-        scrollYProgress.on("change",v => {
+        scrollYProgress.on("change", v => {
             console.log(v);
-            if(v<1){
-            setcurr(Math.floor(v * PROJECTS.length));
+            if (v < 1) {
+                setcurr(Math.floor(v * PROJECTS.length));
             }
         });
     }, [scrollYProgress]);
@@ -81,8 +96,8 @@ export default function Projects() {
                     {PROJECTS.map((project, index) => {
                         const isCurrentProject = index === currProjIndex;
                         return (
-                            <h3 
-                                key={index} 
+                            <h3
+                                key={index}
                                 className="font-semibold text-2xl transition-transform"
                                 style={{
                                     transform: isCurrentProject ? 'scale(1.3)' : 'scale(1)',
@@ -99,17 +114,51 @@ export default function Projects() {
                     {skillPositions.map((skill) => {
                         const isInTech = PROJECTS[currProjIndex].tech.includes(skill.skill);
                         return (
-                            <motion.img
+                            <div
                                 key={skill.skill}
-                                className="absolute w-12 h-12"
-                                src={`/skills/${skill.skill}.svg`}
+                                className="absolute z-30"
                                 style={{
-                                    transform: `translate(${skill.x}vw, ${skill.y}vw) scale(${isInTech ? 1.3 : 1})`,
-                                    transition: 'transform 0.2s ease-out'
+                                    transform: `translate(${skill.x}vw, ${skill.y}vw)`,
+                                    cursor: 'none',
                                 }}
-                            />
+                                onMouseMove={handleMouseMove}
+                                onMouseEnter={() => handleMouseEnter(skill.skill)}
+                                onMouseLeave={handleMouseLeave}
+                            >
+                                <motion.img
+                                    className="w-12 h-12"
+                                    src={`/skills/${skill.skill}.svg`}
+                                    style={{
+                                        transform: `scale(${isInTech ? 1.5 : 1})`,
+                                        transition: 'transform 0.2s ease-out',
+                                    }}
+                                />
+                                {/* TODO: SHOW THE SKILL NAME */}
+                                {/* {isInTech && (
+                                    <span className="absolute text-xs text-white bg-black p-1 rounded">
+                                        {skill.skill}
+                                    </span>
+                                )} */}
+                            </div>
                         );
                     })}
+                    {hoveredSkill && (
+                        <AnimatePresence>
+                            <motion.div
+                                className="fixed bg-white opacity-90 text-black uppercase text-xs p-1 rounded z-50"
+                                style={{
+                                    left: `${tooltipPosition.x - 20}px`,
+                                    top: `${tooltipPosition.y}px`,
+                                }}
+                                initial={{ scale: 0.1 }}
+                                animate={{ scale: 1.3 }}
+                                exit={{ scale: 0.1 }}
+                            >
+                                {hoveredSkill}
+                            </motion.div>
+                        </AnimatePresence>
+                    )}
+                    {/* Rest of the PROJECTS.map code remains the same */}
                     {PROJECTS.map((project, index) => {
                         const start = index * step;
                         const midStart = start + step * 0.2;
@@ -117,8 +166,6 @@ export default function Projects() {
                         const end = (index + 1) * step;
                         const opacity = useTransform(scrollYProgress, [start, midStart, midEnd, end], [0, 1, 1, 0]);
                         const zIndex = useTransform(scrollYProgress, [start, midStart, midEnd, end], [-1, 1, 1, -1]);
-
-
 
                         return (
                             <motion.div
@@ -131,31 +178,24 @@ export default function Projects() {
                                     alt={project.name}
                                     className="rounded-full absolute -z-10 object-cover w-[44vw] aspect-square object-top overflow-hidden"
                                 />
-                                <div className="bg-white opacity-50 w-[44vw] aspect-square rounded-full text-black flex flex-col gap-2 items-center justify-center">
-                                    <h3 className="font-semibold text-xl">{project.name}</h3>
-                                    <p className="text-sm text-center">{project.description}</p>
-                                    <a
-                                        href={project.url}
-                                        className="text-blue-500 underline"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
+                                <div className="bg-white/60 backdrop-blur-sm w-[44vw] aspect-square rounded-full text-black flex flex-col gap-2 items-center justify-center p-[20%]">
+                                    <h1 className="font-semibold text-3xl">{project.name}</h1>
+                                    <p className="text-md text-center">{project.description}</p>
+                                    <Button href={project.url} className="text-black border-2 border-black">
                                         View Project
-                                    </a>
+                                    </Button>
                                 </div>
                             </motion.div>
                         );
                     })}
                 </div>
-
             </div>
 
             <div
                 ref={projectRef}
-                className="relative w-screen"
+                className="relative w-screen -z-10"
                 style={{ height: `${PROJECTS.length * 100}vh` }}
             >
-
             </div>
         </>
     );
