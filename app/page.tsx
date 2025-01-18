@@ -1,12 +1,32 @@
 "use client"
 
-import Hero from "./Hero";
-import Projects from "./Project";
+import Intro from "./components/Intro";
+import Hero from "./Sections/Hero";
+import Projects from "./Sections/Project";
+import { useContext } from "react";
+import { useAppContext, AppProvider } from "./AppContext";
+
+function Main() {
+  const { isIntroPlayed } = useAppContext();
+  return (
+    <>
+      {!isIntroPlayed && <Intro />}
+      {isIntroPlayed && (
+        <>
+          <Hero />
+          <Projects />
+        </>
+      )}
+    </>
+  );
+}
+
 
 export default function Home() {
   return (
-    <>
-    <Projects />
-    </>
+    <AppProvider>
+      <Main />
+    </AppProvider>
+
   );
 }
