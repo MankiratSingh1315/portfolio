@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react"; // Changed import to framer-motion
+import { motion, useScroll, useTransform, AnimatePresence, MotionValue } from "motion/react"; // Changed import to framer-motion
 import { useEffect, useMemo, useRef, useState } from "react";
 import Button from "../components/Button";
 
@@ -49,9 +49,42 @@ const SKILLS = {
 };
 
 const flattenedSkills = Object.values(SKILLS).flat();
+
+const step = 1 / (PROJECTS.length);
+
+function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECTS[0], index: number, scrollYProgress: MotionValue<number> }) {
+    const start = index * step;
+    const midStart = start + step * (index == 1 ? 0.01 : 0.2);
+    const midEnd = start + step * (index == 1 ? 1 : 0.8);
+    const end = (index + 1) * step;
+    const opacity = useTransform(scrollYProgress, [start, midStart, midEnd, end], [0, 1, 1, 0]);
+    const zIndex = useTransform(scrollYProgress, [start, midStart, midEnd, end], [-1, 1, 1, -1]);
+
+    return (
+        <motion.div
+            key={index}
+            className="absolute h-screen flex flex-col items-center justify-center"
+            style={{ opacity, zIndex }}
+        >
+            <img
+                src={project.image}
+                alt={project.name}
+                className="rounded-full absolute -z-10 object-cover w-[44vw] aspect-square object-top overflow-hidden"
+            />
+            <div className="bg-white/60 backdrop-blur-sm w-[44vw] aspect-square rounded-full text-black flex flex-col gap-2 items-center justify-center p-[20%]">
+                <h1 className="font-semibold text-3xl">{project.name}</h1>
+                <p className="text-md text-center">{project.description}</p>
+                <Button href={project.url} className="text-black border-2 border-black z-50">
+                    View Project
+                </Button>
+            </div>
+        </motion.div>
+    );
+}
+
 export default function Projects() {
     const projectRef = useRef(null);
-    const { scrollYProgress, scrollY } = useScroll({ target: projectRef });
+    const { scrollYProgress } = useScroll({ target: projectRef });
 
     const fadeIn = useTransform(
         scrollYProgress,
@@ -59,7 +92,6 @@ export default function Projects() {
         [0, 1]
     );
 
-    const step = 1 / (PROJECTS.length);
 
     const skillPositions = useMemo(() => {
         return flattenedSkills.map((skill, index) => {
@@ -169,35 +201,12 @@ export default function Projects() {
                                 </motion.div>
                             </AnimatePresence>
                         )}
-                        {PROJECTS.map((project, index) => {
-                            const start = index * step;
-                            const midStart = start + step * (index == 1 ? 0.01 : 0.2);
-                            const midEnd = start + step * (index == 1 ? 1 : 0.8);
-                            const end = (index + 1) * step;
-                            const opacity = useTransform(scrollYProgress, [start, midStart, midEnd, end], [0, 1, 1, 0]);
-                            const zIndex = useTransform(scrollYProgress, [start, midStart, midEnd, end], [-1, 1, 1, -1]);
-
-                            return (
-                                <motion.div
-                                    key={index}
-                                    className="absolute h-screen flex flex-col items-center justify-center"
-                                    style={{ opacity, zIndex }}
-                                >
-                                    <img
-                                        src={project.image}
-                                        alt={project.name}
-                                        className="rounded-full absolute -z-10 object-cover w-[44vw] aspect-square object-top overflow-hidden"
-                                    />
-                                    <div className="bg-white/60 backdrop-blur-sm w-[44vw] aspect-square rounded-full text-black flex flex-col gap-2 items-center justify-center p-[20%]">
-                                        <h1 className="font-semibold text-3xl">{project.name}</h1>
-                                        <p className="text-md text-center">{project.description}</p>
-                                        <Button href={project.url} className="text-black border-2 border-black z-50">
-                                            View Project
-                                        </Button>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
+                        {PROJECTS.map((project, index) => (<ProjDesc
+                            key={index}
+                            project={project}
+                            index={index}
+                            scrollYProgress={scrollYProgress}
+                        />))}
                     </div>
                 </motion.div>
             </div>

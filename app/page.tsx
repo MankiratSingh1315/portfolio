@@ -3,7 +3,6 @@
 import Intro from "./components/Intro";
 import Hero from "./Sections/Hero";
 import Projects from "./Sections/Project";
-import { useContext } from "react";
 import { useAppContext, AppProvider } from "./AppContext";
 
 function Main() {

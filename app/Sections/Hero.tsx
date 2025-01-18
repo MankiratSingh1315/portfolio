@@ -89,7 +89,7 @@ export default function Hero() {
                             href="mailto:msingh2_be22@thapar.edu"
                             className=" text-white border-2 border-white"
                         >
-                            Let's Talk
+                            Let&rsquo;s Talk
                         </Button>
                     </motion.div>
                 </div>
