@@ -4,9 +4,11 @@ import Intro from "./components/Intro";
 import Hero from "./Sections/Hero";
 import Projects from "./Sections/Project";
 import { useAppContext, AppProvider } from "./AppContext";
+import ExpAndAcheivements from "./Sections/ExpAndAcheivement";
 
 function Main() {
   const { isIntroPlayed } = useAppContext();
+  // const isIntroPlayed = true;
   return (
     <>
       {!isIntroPlayed && <Intro />}
@@ -14,6 +16,7 @@ function Main() {
         <>
           <Hero />
           <Projects />
+          <ExpAndAcheivements />
         </>
       )}
     </>

@@ -88,8 +88,8 @@ export default function Projects() {
 
     const fadeIn = useTransform(
         scrollYProgress,
-        [0.05, 1 / (PROJECTS.length)],
-        [0, 1]
+        [0.05, 1 / (PROJECTS.length), 1 - 1 / (PROJECTS.length), 0.95],
+        [0, 1, 1, 0]
     );
 
 
