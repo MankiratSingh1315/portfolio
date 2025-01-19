@@ -284,23 +284,7 @@ export default function ExpAndAcheivements() {
                         </div>
                     </>
                 )}
-                <motion.h2
-                    className="text-2xl font-bold mb-4 text-white"
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                >
-                    Education
-                </motion.h2>
-                {education.length > 0 && (
-                    <>
-                        <div className="grid gap-10 grid-cols-1">
-                            {education.map((milestone, index) => (
-                                <MilestoneComponent key={index} milestone={milestone} />
-                            ))}
-                        </div>
-                    </>
-                )}
+                
             </section>
             <section className="sticky top-10">
                 <motion.h2
@@ -315,6 +299,23 @@ export default function ExpAndAcheivements() {
                     <>
                         <div className="grid gap-10 grid-cols-1">
                             {experiences.map((milestone, index) => (
+                                <MilestoneComponent key={index} milestone={milestone} />
+                            ))}
+                        </div>
+                    </>
+                )}
+                <motion.h2
+                    className="text-2xl font-bold mb-4 text-white"
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                    Education
+                </motion.h2>
+                {education.length > 0 && (
+                    <>
+                        <div className="grid gap-10 grid-cols-1">
+                            {education.map((milestone, index) => (
                                 <MilestoneComponent key={index} milestone={milestone} />
                             ))}
                         </div>
