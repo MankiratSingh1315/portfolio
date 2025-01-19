@@ -146,11 +146,11 @@ const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
             whileInView={{ opacity: 1 }}
             exit={{ opacity: 0 }}
         >
-            <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg">
+            <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-gray-800/20 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg">
 
             </div>
             <header
-                className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2"
+                className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500 sm:col-span-2"
                 aria-label={milestone.timeline}
             >
                 {milestone.timeline}
@@ -167,7 +167,7 @@ const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
                         )}
                         {milestone.relatedUrl ? (
                             <a
-                                className="items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300 group/link text-base"
+                                className="items-baseline font-medium leading-tight text-gray-200 hover:text-gray-300 focus-visible:text-gray-300 group/link text-base"
                                 href={milestone.relatedUrl}
                                 target="_blank"
                                 rel="noreferrer noopener"
