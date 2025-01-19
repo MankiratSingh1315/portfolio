@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { MENULINKS } from "../components/Menu";
 export const TIMELINE: Milestone[] = [
     {
         title: "Thapar Institute of Engineering and Technology, Patiala",
@@ -217,6 +218,7 @@ const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
         </motion.div>
     );
 };
+const { ref: timelineSectionRef } = MENULINKS[2]
 
 export default function ExpAndAcheivements() {
     const accomplishments = TIMELINE.filter(m => m.type === "accomplishment");
@@ -242,9 +244,10 @@ export default function ExpAndAcheivements() {
                 opacity: opacity
             }}
             ref={heroScrollRef}
-
-        >
-            <section className="flex gap-8">
+            >
+            <section className="flex gap-8"
+            id={timelineSectionRef}
+            >
                 <div className="h-screen bg-white/10 sticky top-0">
                     <div className="h-screen w-1 bg-gradient-to-b from-transparent via-white/30 to-transparent mx-auto"></div>
                 </div>

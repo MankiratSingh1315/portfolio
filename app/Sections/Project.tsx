@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, AnimatePresence, MotionValue } from "motion/react"; // Changed import to framer-motion
 import { useEffect, useMemo, useRef, useState } from "react";
 import Button from "../components/Button";
+import { MENULINKS } from "../components/Menu";
 
 export const PROJECTS = [
     {
@@ -81,6 +82,7 @@ function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECT
         </motion.div>
     );
 }
+const { ref: projectSectionRef } = MENULINKS[1]
 
 export default function Projects() {
     const projectRef = useRef(null);
@@ -131,14 +133,16 @@ export default function Projects() {
             <div
                 ref={projectRef}
                 className="relative w-screen"
-                style={{ height: `${(PROJECTS.length+1) * 100}vh`, marginBottom:`-90vh` }}
+                style={{ height: `${(PROJECTS.length + 1) * 100}vh`, marginBottom: `-90vh` }}
             >
                 <motion.div
                     style={{ opacity: fadeIn }}
                     className="flex gap-32 h-screen w-screen text-white items-center justify-center sticky top-0"
                 >
                     <div className="flex flex-col gap-5 text-right">
-                        <h1 className="heading-md">Projects</h1>
+                        <h1 className="heading-md"
+                            id={projectSectionRef}
+                        >Projects</h1>
                         <div className="flex flex-col gap-2 text-right">
                             {PROJECTS.map((project, index) => {
                                 const isCurrentProject = index === currProjIndex;

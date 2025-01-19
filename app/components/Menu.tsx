@@ -6,21 +6,17 @@ export const MENULINKS = [
         ref: "home",
     },
     {
-        name: "Works",
-        ref: "works",
-    },
-    {
-        name: "Skills",
-        ref: "skills",
+        name: "Projects",
+        ref: "projects",
     },
     {
         name: "Timeline",
         ref: "timeline",
     },
-    {
-        name: "Contact",
-        ref: "contact",
-    },
+    // {
+    //     name: "Contact",
+    //     ref: "contact",
+    // },
 ];
 
 const Menu = ({
