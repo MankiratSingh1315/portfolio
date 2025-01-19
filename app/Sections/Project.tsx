@@ -69,9 +69,9 @@ function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECT
             <img
                 src={project.image}
                 alt={project.name}
-                className="rounded-full absolute -z-10 object-cover w-[44vw] aspect-square object-top overflow-hidden"
+                className="rounded-full absolute -z-10 object-cover w-[38vw] aspect-square object-top overflow-hidden"
             />
-            <div className="bg-white/60 backdrop-blur-sm w-[44vw] aspect-square rounded-full text-black flex flex-col gap-2 items-center justify-center p-[20%]">
+            <div className="bg-white/60 backdrop-blur-sm w-[38vw] aspect-square rounded-full text-black flex flex-col gap-2 items-center justify-center p-[20%]">
                 <h1 className="font-semibold text-3xl">{project.name}</h1>
                 <p className="text-md text-center">{project.description}</p>
                 <Button href={project.url} className="text-black border-2 border-black z-50">
@@ -88,7 +88,7 @@ export default function Projects() {
 
     const fadeIn = useTransform(
         scrollYProgress,
-        [0.05, 1 / (PROJECTS.length), 1 - 1 / (PROJECTS.length), 0.95],
+        [0.05, 1 / (PROJECTS.length), 1 - 1 / (PROJECTS.length), 0.99],
         [0, 1, 1, 0]
     );
 
@@ -96,8 +96,8 @@ export default function Projects() {
     const skillPositions = useMemo(() => {
         return flattenedSkills.map((skill, index) => {
             const angle = (index / flattenedSkills.length) * 2 * Math.PI;
-            const x = (49 * Math.cos(angle) / 2).toFixed(4);
-            const y = (49 * Math.sin(angle) / 2).toFixed(4);
+            const x = (43 * Math.cos(angle) / 2).toFixed(4);
+            const y = (43 * Math.sin(angle) / 2).toFixed(4);
             return { skill, x, y };
         });
     }, []);
@@ -131,7 +131,7 @@ export default function Projects() {
             <div
                 ref={projectRef}
                 className="relative w-screen"
-                style={{ height: `${(PROJECTS.length + 1) * 100}vh` }}
+                style={{ height: `${(PROJECTS.length+1) * 100}vh`, marginBottom:`-90vh` }}
             >
                 <motion.div
                     style={{ opacity: fadeIn }}
@@ -159,7 +159,7 @@ export default function Projects() {
                         </div>
                     </div>
 
-                    <div className="relative flex justify-center items-center w-[49vw] aspect-square rounded-full">
+                    <div className="relative flex justify-center items-center w-[43vw] aspect-square rounded-full">
                         {skillPositions.map((skill) => {
                             const isInTech = currProjIndex >= 0 ? PROJECTS[currProjIndex].tech.includes(skill.skill) : false;
                             return (

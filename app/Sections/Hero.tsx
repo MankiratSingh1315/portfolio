@@ -3,6 +3,7 @@ import ChangingText from '../components/ChangingText';
 import Image from 'next/image';
 import Button from '../components/Button';
 import { useRef } from 'react';
+import { MENULINKS } from '../components/Menu';
 
 const SOCIAL_LINKS = {
     linkedin: "https://www.linkedin.com/in/mankiratsingh1315/",
@@ -28,7 +29,7 @@ const RenderSocialLinks = (): React.ReactNode =>
             <Image src={`/social/${el}.svg`} alt={el} width={40} height={40} />
         </motion.a>
     ));
-
+const { ref: heroSectionRef } = MENULINKS[0]
 export default function Hero() {
     const heroScrollRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: heroScrollRef });
@@ -40,6 +41,8 @@ export default function Hero() {
                 marginBottom: '-200vh',
             }}
             ref={heroScrollRef}
+            id={heroSectionRef}
+            
         >
             <motion.div className="h-screen w-screen text-white flex justify-center items-center gap-28 sticky top-0"
                 style={{ opacity }}

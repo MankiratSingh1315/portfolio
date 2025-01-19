@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 export const TIMELINE: Milestone[] = [
     {
         title: "Thapar Institute of Engineering and Technology, Patiala",
@@ -40,7 +40,7 @@ export const TIMELINE: Milestone[] = [
         type: "experience",
         timeline: "July 2024 - Sep 2024",
         relatedUrl: 'https://www.storoo.in/',
-        relatedImage: null,
+        relatedImage: { url: "/timeline/storoo.jpg", description: "logo" },
         relatedFiles: null,
         techStack: ["NextJS", "PostgresSQL", "AWS EC2", "Docker", "NGINX", "GitHub Actions"],
         description: "Implemented role-based authentication and deployed applications with a blue-green deployment strategy."
@@ -51,7 +51,7 @@ export const TIMELINE: Milestone[] = [
         type: "experience",
         timeline: "June 2023 - Oct 2023",
         relatedUrl: 'https://teraforgedigitallab.com/',
-        relatedImage: null,
+        relatedImage: { url: "/timeline/undigitally.png", description: "logo" },
         relatedFiles: null,
         techStack: ["Flutter", "Material UI", "Firebase"],
         description: "Developed a social media app supporting content posting and profile management."
@@ -61,7 +61,7 @@ export const TIMELINE: Milestone[] = [
         type: "achievement",
         timeline: "August 2024",
         relatedUrl: "https://rover.mankiratsingh.com",
-        relatedImage: null,
+        relatedImage: { url: "/timeline/president.jpeg", description: "flex" },
         relatedFiles: null,
         techStack: ["React", "ThreeJS", "YOLOv5", "U-Net"],
         description: "Developed LUNAR - a comprehensive system to analyze Chandrayaan-2 data, enabling navigation on the Moon for rovers. The project involved processing and geo-referencing lunar imagery to create a 3D surface model using Three.js, combined with anomaly detection on IIRS spectral data to identify research-worthy points of interest. This innovation won the Bharatiya Antariksh Hackathon 2024, organized by ISRO, and was honored by the President of India on the first National Space Day."
@@ -73,7 +73,7 @@ export const TIMELINE: Milestone[] = [
         relatedUrl: "",
         relatedImage: null,
         relatedFiles: null,
-        techStack: ["React","Flask", "Web Crawling", "Similarity Analysis"],
+        techStack: ["React", "Flask", "Web Crawling", "Similarity Analysis"],
         description: "Developed DeepWord - a deepfake detection tool for influencers and celebreties to detect deepfakes of themselves over the internet. The project involved web crawling to collect data, similarity analysis to detect deepfakes, and a user-friendly interface to upload images and get results. The project was awarded the Runner Up position at HackTU5.0."
     },
 
@@ -84,7 +84,7 @@ export const TIMELINE: Milestone[] = [
         type: "accomplishment",
         timeline: "Nov 2022 - Present",
         relatedUrl: 'https://mlsctiet.com/',
-        relatedImage: null,
+        relatedImage: { url: "/timeline/mlsc.png", description: "logo" },
         relatedFiles: null,
         techStack: [],
         previousPositions: [
@@ -104,7 +104,7 @@ export const TIMELINE: Milestone[] = [
         type: "accomplishment",
         timeline: "Nov 2022 - Sep 2023",
         relatedUrl: 'https://owasptiet.com/',
-        relatedImage: null,
+        relatedImage:null,
         relatedFiles: null,
         techStack: [],
         previousPositions: [
@@ -120,7 +120,7 @@ export const TIMELINE: Milestone[] = [
         type: "accomplishment",
         timeline: "Sep 2023 - Present",
         relatedUrl: null,
-        relatedImage: null,
+        relatedImage: { url: "/timeline/me.png", description: "logo" },
         relatedFiles: null,
         techStack: [],
     }
@@ -142,9 +142,6 @@ interface Milestone {
 const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
     return (
         <motion.div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 w-[35vw]"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
         >
             <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-gray-800/20 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg">
 
@@ -158,13 +155,6 @@ const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
             <div className="z-10 sm:col-span-6">
                 <h3 className="font-medium leading-snug text-slate-200">
                     <div className="flex items-center gap-2">
-                        {milestone.relatedImage?.description === 'logo' && (
-                            <img
-                                src={milestone.relatedImage.url}
-                                alt={milestone.title}
-                                className="w-6 h-6 object-contain"
-                            />
-                        )}
                         {milestone.relatedUrl ? (
                             <a
                                 className="items-baseline font-medium leading-tight text-gray-200 hover:text-gray-300 focus-visible:text-gray-300 group/link text-base"
@@ -215,7 +205,7 @@ const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
                         {milestone.techStack.map((tech, index) => (
                             <li key={index} className="mr-1.5 mt-2">
                                 <div
-                                    className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300"
+                                    className="flex items-center rounded-full bg-slate-400/10 px-3 py-1 text-xs font-medium leading-5 text-slate-300"
                                 >
                                     {tech}
                                 </div>
@@ -234,94 +224,122 @@ export default function ExpAndAcheivements() {
     const achievements = TIMELINE.filter(m => m.type === "achievement");
     const education = TIMELINE.filter(m => m.type === "education");
     const heroScrollRef = useRef(null);
+    const imagesWithRelatedImage = TIMELINE.filter(m => m.relatedImage);
 
     const { scrollYProgress } = useScroll({ target: heroScrollRef });
-    const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+    const opacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % imagesWithRelatedImage.length);
+        }, 2000);
+        return () => clearInterval(interval);
+    }, [imagesWithRelatedImage]);
     return (
-        <motion.div className="grid gap-3 grid-cols-2 place-items-start justify-items-center"
+        <motion.div className="grid grid-cols-2 place-items-start justify-items-center w-screen pt-[40vh]"
             style={{
-                height: '130vh',
-                width: '100vw',
-                marginTop: '-130vh',
                 opacity: opacity
-                
             }}
             ref={heroScrollRef}
 
         >
-            <section className="flex flex-col gap-8 sticky top-10">
-                <motion.h2
-                    className="text-2xl font-bold mb-4 text-white"
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    Achievements
-                </motion.h2>
-                {achievements.length > 0 && (
-                    <>
-                        <div className="grid gap-10 grid-cols-1">
-                            {achievements.map((milestone, index) => (
-                                <MilestoneComponent key={index} milestone={milestone} />
-                            ))}
-                        </div>
-                    </>
-                )}
-                <motion.h2
-                    className="text-2xl font-bold mb-4 text-white"
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                    Accomplishments
-                </motion.h2>
-                {accomplishments.length > 0 && (
-                    <>
-                        <div className="grid gap-10 grid-cols-1">
-                            {accomplishments.map((milestone, index) => (
-                                <MilestoneComponent key={index} milestone={milestone} />
-                            ))}
-                        </div>
-                    </>
-                )}
-                
+            <section className="flex gap-8">
+                <div className="h-screen bg-white/10 sticky top-0">
+                    <div className="h-screen w-1 bg-gradient-to-b from-transparent via-white/30 to-transparent mx-auto"></div>
+                </div>
+                <div>
+                    <motion.h2
+                        className="text-2xl font-bold mt-4 text-white"
+                    >
+                        Achievements
+                    </motion.h2>
+                    {achievements.length > 0 && (
+                        <>
+                            <div className="grid gap-10 grid-cols-1">
+                                {achievements.map((milestone, index) => (
+                                    <MilestoneComponent key={index} milestone={milestone} />
+                                ))}
+                            </div>
+                        </>
+                    )}
+                    <motion.h2
+                        className="text-2xl font-bold mt-4 text-white"
+                    >
+                        Accomplishments
+                    </motion.h2>
+                    {accomplishments.length > 0 && (
+                        <>
+                            <div className="grid gap-10 grid-cols-1">
+                                {accomplishments.map((milestone, index) => (
+                                    <MilestoneComponent key={index} milestone={milestone} />
+                                ))}
+                            </div>
+                        </>
+                    )}
+
+                    {/* </section>
+            <section className="sticky top-10"> */}
+                    <motion.h2
+                        className="text-2xl font-bold mt-4 text-white"
+                    >
+                        Experience
+                    </motion.h2>
+                    {experiences.length > 0 && (
+                        <>
+                            <div className="grid gap-10 grid-cols-1">
+                                {experiences.map((milestone, index) => (
+                                    <MilestoneComponent key={index} milestone={milestone} />
+                                ))}
+                            </div>
+                        </>
+                    )}
+                    <motion.h2
+                        className="text-2xl font-bold mt-4 text-white"
+                    >
+                        Education
+                    </motion.h2>
+                    {education.length > 0 && (
+                        <>
+                            <div className="grid gap-10 grid-cols-1">
+                                {education.map((milestone, index) => (
+                                    <MilestoneComponent key={index} milestone={milestone} />
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </div>
             </section>
-            <section className="sticky top-10">
-                <motion.h2
-                    className="text-2xl font-bold mb-4 text-white"
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
+
+
+            <div className="h-full">
+                <div
+                    className="sticky top-0 h-screen flex items-center justify-center"
                 >
-                    Experience
-                </motion.h2>
-                {experiences.length > 0 && (
-                    <>
-                        <div className="grid gap-10 grid-cols-1">
-                            {experiences.map((milestone, index) => (
-                                <MilestoneComponent key={index} milestone={milestone} />
-                            ))}
-                        </div>
-                    </>
-                )}
-                <motion.h2
-                    className="text-2xl font-bold mb-4 text-white"
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                >
-                    Education
-                </motion.h2>
-                {education.length > 0 && (
-                    <>
-                        <div className="grid gap-10 grid-cols-1">
-                            {education.map((milestone, index) => (
-                                <MilestoneComponent key={index} milestone={milestone} />
-                            ))}
-                        </div>
-                    </>
-                )}
-            </section>
+                    {imagesWithRelatedImage.length > 0 && (
+                        <motion.div
+                            key={currentIndex}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="relative"
+                        >
+                            <img
+                                src={imagesWithRelatedImage[currentIndex].relatedImage?.url}
+                                alt={imagesWithRelatedImage[currentIndex].title}
+                                className="w-[40vw] aspect-video object-cover rounded-lg"
+                            />
+                            <div className="absolute bottom-0 left-0 w-full bg-black/40 text-white p-3">
+                                <h2 className="text-base font-semibold">
+                                    {imagesWithRelatedImage[currentIndex].title}
+                                </h2>
+                                <p className="text-xs">
+                                    {imagesWithRelatedImage[currentIndex].timeline}
+                                </p>
+                            </div>
+                        </motion.div>
+                    )}
+                </div>
+            </div>
         </motion.div>
     );
 }

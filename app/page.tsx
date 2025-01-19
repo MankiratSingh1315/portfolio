@@ -5,15 +5,16 @@ import Hero from "./Sections/Hero";
 import Projects from "./Sections/Project";
 import { useAppContext, AppProvider } from "./AppContext";
 import ExpAndAcheivements from "./Sections/ExpAndAcheivement";
+import Header from "./components/Header";
 
 function Main() {
   const { isIntroPlayed } = useAppContext();
-  // const isIntroPlayed = true;
   return (
     <>
       {!isIntroPlayed && <Intro />}
       {isIntroPlayed && (
         <>
+          <Header />
           <Hero />
           <Projects />
           <ExpAndAcheivements />
