@@ -38,7 +38,7 @@ body{
     background-color: #030712; */
     background: linear-gradient(45deg,transparent 34%, #cecece05 35%, #cecece05 40%, transparent 41%, transparent 59%, #cecece05  60%, #cecece05 65%, transparent 66%),linear-gradient(135deg,transparent 34%, #cecece05 35%, #cecece05 40%, transparent 41%, transparent 59%, #cecece05  60%, #cecece05 65%, transparent 66%);
         background-size: 10em 10em;
-        background-color: #030712;
+        background-color: #020202;
         /* opacity: 1; */
 }
 
