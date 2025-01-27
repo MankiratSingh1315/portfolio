@@ -48,6 +48,23 @@ body{
   padding-left: 1rem;
   padding-right: 1rem;
 }
+footer {
+  background-image: 
+    url("/footer-bg.svg"),
+    linear-gradient(
+      180deg,
+      rgba(58,58,58,0),
+      rgba(105,105,105,0.1),
+      rgba(103,104,104,0.2),
+      rgba(83,83,83,0.3)
+    );
+  /* background-blend-mode: overlay; */
+  background-size: cover;
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+  color: #fff;
+  margin-top: 5rem;
+}
 
 @media (min-width: 768px) {
   .section-container {

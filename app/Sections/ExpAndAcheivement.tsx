@@ -121,12 +121,11 @@ export const TIMELINE: Milestone[] = [
         type: "accomplishment",
         timeline: "Sep 2023 - Present",
         relatedUrl: null,
-        relatedImage: { url: "/timeline/me.png", description: "logo" },
+        relatedImage: null,
         relatedFiles: null,
         techStack: [],
     }
 ];
-
 interface Milestone {
     title: string;
     subtitle?: string;
@@ -142,10 +141,13 @@ interface Milestone {
 
 const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
     return (
-        <motion.div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 w-[35vw]"
+        <motion.div
+            className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 w-[35vw] mt-5"
+            whileInView={{ scale: 1.1, transformOrigin: 'left' }}
+            transition={{ duration: 0.3 }}
+            viewport={{ amount: 1, once: false }}
         >
-            <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-gray-800/20 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg">
-
+            <div className="absolute -inset-x-2 -inset-y-2 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-4 lg:block lg:group-hover:bg-gray-800/20 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg">
             </div>
             <header
                 className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500 sm:col-span-2"
@@ -164,7 +166,7 @@ const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
                                 rel="noreferrer noopener"
                                 aria-label={`${milestone.title} at ${milestone.subtitle || ''}`}
                             >
-                                <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                                <span className="absolute -inset-x-2 -inset-y-1.5 hidden rounded md:-inset-x-4 md:-inset-y-2 lg:block"></span>
                                 <p>
                                     {milestone.title}<span className="inline-block">
                                         <svg
@@ -181,9 +183,6 @@ const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
                                             />
                                         </svg>
                                     </span>
-                                </p>
-                                <p className="block text-sm font-normal leading-5 text-slate-200">
-                                    {milestone.subtitle}
                                 </p>
                             </a>
                         ) : (
@@ -235,82 +234,74 @@ export default function ExpAndAcheivements() {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % imagesWithRelatedImage.length);
-        }, 2000);
+        }, 3000);
         return () => clearInterval(interval);
     }, [imagesWithRelatedImage]);
     return (
-        <motion.div className="grid grid-cols-2 place-items-start justify-items-center w-screen pt-[40vh]"
+        <motion.div className="grid grid-cols-2 justify-items-center w-screen pt-[40vh]"
             style={{
                 opacity: opacity
             }}
             ref={heroScrollRef}
             >
-            <section className="flex gap-8"
+            <section className="flex gap-14"
             id={timelineSectionRef}
             >
                 <div className="h-screen bg-white/10 sticky top-0">
                     <div className="h-screen w-1 bg-gradient-to-b from-transparent via-white/30 to-transparent mx-auto"></div>
                 </div>
                 <div>
-                    <motion.h2
-                        className="text-2xl font-bold mt-4 text-white"
-                    >
-                        Achievements
-                    </motion.h2>
-                    {achievements.length > 0 && (
-                        <>
+                    <div className="mt-12">
+                        <motion.h2 className="text-2xl font-bold mt-4 text-white">
+                            Achievements
+                        </motion.h2>
+                        {achievements.length > 0 && (
                             <div className="grid gap-10 grid-cols-1">
                                 {achievements.map((milestone, index) => (
                                     <MilestoneComponent key={index} milestone={milestone} />
                                 ))}
                             </div>
-                        </>
-                    )}
-                    <motion.h2
-                        className="text-2xl font-bold mt-4 text-white"
-                    >
-                        Accomplishments
-                    </motion.h2>
-                    {accomplishments.length > 0 && (
-                        <>
+                        )}
+                    </div>
+
+                    <div className="mt-12">
+                        <motion.h2 className="text-2xl font-bold mt-4 text-white">
+                            Accomplishments
+                        </motion.h2>
+                        {accomplishments.length > 0 && (
                             <div className="grid gap-10 grid-cols-1">
                                 {accomplishments.map((milestone, index) => (
                                     <MilestoneComponent key={index} milestone={milestone} />
                                 ))}
                             </div>
-                        </>
-                    )}
+                        )}
+                    </div>
 
-                    {/* </section>
-            <section className="sticky top-10"> */}
-                    <motion.h2
-                        className="text-2xl font-bold mt-4 text-white"
-                    >
-                        Experience
-                    </motion.h2>
-                    {experiences.length > 0 && (
-                        <>
+                    <div className="mt-12">
+                        <motion.h2 className="text-2xl font-bold mt-4 text-white">
+                            Experience
+                        </motion.h2>
+                        {experiences.length > 0 && (
                             <div className="grid gap-10 grid-cols-1">
                                 {experiences.map((milestone, index) => (
                                     <MilestoneComponent key={index} milestone={milestone} />
                                 ))}
                             </div>
-                        </>
-                    )}
-                    <motion.h2
-                        className="text-2xl font-bold mt-4 text-white"
-                    >
-                        Education
-                    </motion.h2>
-                    {education.length > 0 && (
-                        <>
+                        )}
+                    </div>
+
+                    <div className="mt-12">
+                        <motion.h2 className="text-2xl font-bold mt-4 text-white">
+                            Education
+                        </motion.h2>
+                        {education.length > 0 && (
                             <div className="grid gap-10 grid-cols-1">
                                 {education.map((milestone, index) => (
                                     <MilestoneComponent key={index} milestone={milestone} />
                                 ))}
                             </div>
-                        </>
-                    )}
+                        )}
+                    </div>
                 </div>
             </section>
 

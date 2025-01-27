@@ -6,6 +6,7 @@ import Projects from "./Sections/Project";
 import { useAppContext, AppProvider } from "./AppContext";
 import ExpAndAcheivements from "./Sections/ExpAndAcheivement";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function Main() {
   const { isIntroPlayed } = useAppContext();
@@ -18,6 +19,7 @@ function Main() {
           <Hero />
           <Projects />
           <ExpAndAcheivements />
+          <Footer />
         </>
       )}
     </>

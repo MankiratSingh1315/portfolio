@@ -55,8 +55,8 @@ const step = 1 / (PROJECTS.length);
 
 function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECTS[0], index: number, scrollYProgress: MotionValue<number> }) {
     const start = index * step;
-    const midStart = start + step * (index == 1 ? 0.01 : 0.2);
-    const midEnd = start + step * (index == 1 ? 1 : 0.8);
+    const midStart = start + step * (index == 1 ? 0.01 : 0.1);
+    const midEnd = start + step * (index == 1 ? 1 : 0.9);
     const end = (index + 1) * step;
     const opacity = useTransform(scrollYProgress, [start, midStart, midEnd, end], [0, 1, 1, 0]);
     const zIndex = useTransform(scrollYProgress, [start, midStart, midEnd, end], [-1, 1, 1, -1]);
