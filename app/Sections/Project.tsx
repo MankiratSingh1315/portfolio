@@ -5,48 +5,77 @@ import { MENULINKS } from "../components/Menu";
 
 export const PROJECTS = [
     {
+        name: "Founding Engineer - Storoo",
+        image: "/timeline/storoo.jpg",
+        description: "Developed end-to-end portal and implemented a role-based authentication system using NextJS, Lucia and Postgres, ensuring secure access control. The platform is deployed on AWS with a robust architecture utilizing Docker, NGINX, and GitHub Actions for automated deployments and continuous integration. Optimized performance and scalability to support high-traffic loads effectively.",
+        url: "https://www.storoo.in/",
+        tech: ["next", "postgres-sql", "docker", "nginx", "aws", "github", "github-actions"],
+    },
+    {
+        name: "LUNAR - Moon Navigation",
+        image: "/projects/lunar.gif",
+        description: "Designed an advanced moon navigation system leveraging Chandrayaan-2 data to enhance lunar surface exploration. Integrated YOLOv5 for object detection and U-Net for segmentation to analyze terrain features. Developed an interactive 3D visualization using ThreeJS, providing an intuitive and immersive user experience. The project was honored by the President of India for its innovation in space technology.",
+        url: "https://rover.mankiratsingh.com/",
+        tech: ["react","threejs","python"],
+    },
+    {
+        name: "Feedback App TIET",
+        image: "/projects/feedbck.png",
+        description: "Engineered a student feedback system using Flutter and NextJS, integrated with PHP and MySQL to efficiently manage responses from over 10,000 users. Designed a seamless UI using Material-UI for intuitive interactions. Optimized the database structure to handle large-scale data operations while ensuring security and reliability.",
+        url: "",
+        tech: ["flutter", "next", "mysql","php","mui"],
+    },
+    {
+        name: "PDF Rag Bot",
+        image: "/projects/qna.png",
+        description: "Built an intelligent PDF-based question-answering chatbot using Retrieval-Augmented Generation (RAG) and Llama3. Utilized Faiss for efficient vector search, Streamlit for the frontend, and PyPDF for PDF parsing. The system enables users to query uploaded documents dynamically, retrieving precise information in real-time.",
+        url: "https://github.com/MankiratSingh1315/rag-based-flamingo-qna/",
+        tech: ["streamlit", "python","ollama"],
+    },
+    {
         name: "Thapar Food Festival Website",
         image: "/projects/tff.png",
-        description: "A website Frontend developed for North India's one of the largest food festivals. Mainly worked on team and Gallery Page, viewed by 5000+ people",
+        description: "Developed the official website for North India’s largest food festival, featuring a visually appealing gallery page viewed by over 5,000 users. Implemented an engaging UI/UX using React, JavaScript, and CSS to ensure a seamless browsing experience. Optimized image loading and website performance for faster access.",
         url: "https://www.thaparfoodfestival.in/",
         tech: ["react", "javascript", "css"],
     },
     {
+        name: "Makethon 5 App",
+        image: "/projects/make5app.png",
+        description: "Designed a comprehensive Flutter-based mobile application for hackathon management, catering to 500+ participants and facilitating 100+ project submissions. Integrated Firebase for real-time notifications, authentication, and data storage. Enhanced user experience with an intuitive dashboard for tracking events, teams, and project progress.",
+        url: "https://makeathon6.mlsctiet.com/Makeathon6.apk",
+        tech: ["flutter", "firebase"],
+    },
+    {
         name: "Recruitment Portal",
         image: "/projects/recruitment.png",
-        description: "Developed a fully functional end user Oriented Recruitment Portal with a Quiz portal For MLSC, TIET, used by 200+ students.",
+        description: "Developed a recruitment management portal for MLSC TIET, featuring an interactive quiz system for candidate evaluation. The platform, used by over 200 students, was built using React, NodeJS, and Appwrite for backend services. Integrated Firebase authentication to provide secure access and real-time result processing.",
         url: "https://quiz.mlsctiet.com/",
-        tech: ["react", "nodejs", "appwrite"],
-    },
-    {
-        name: "GitHub Organisation Portfolio Generator",
-        image: "/projects/gopg.png",
-        description: "A tool that helps organisations create and showcase their projects, contributors, and their comparisons from GitHub on a single webpage. This will help new/aspiring candidates see what are the projects, top contributors etc.",
-        url: "https://github.com/ips610/Github-Oraganization-Dashboard-Creator",
-        tech: ["react", "flask", "firestore"],
-    },
-    {
-        name: "Leaderboard - 30 Days of Code",
-        image: "/projects/leaderboard.png",
-        description: "A Leaderboard was established for a 30 Days Long competition which focused on tracking particular GitHub Repositories of the participants.",
-        url: "https://github.com/MicrosoftStudentChapter/leaderboard-30daysofcode",
-        tech: ["react", "firestore", "github"],
+        tech: ["react", "appwrite", "firebase"],
     },
     {
         name: "IRC Server in C",
         image: "/projects/IRC-UI.png",
-        description: "Developed a Terminal-based IRC Chatroom with Clients and Server. Technologies used include C++, Web Sockets in C++.",
+        description: "Implemented a terminal-based IRC chatroom from scratch using C and C++. Utilized WebSockets to enable real-time messaging, supporting multiple users simultaneously. Designed a command-based interface for seamless communication and efficient data handling over network sockets.",
         url: "https://github.com/MicrosoftStudentChapter/IRC-Server",
-        tech: ["c++", "websocket"],
-    },
+        tech: ["c", "c++","websocket"],
+    },    
 ];
 
+
+// {
+//     name: "GitHub Organisation Portfolio Generator",
+//     image: "/projects/gopg.png",
+//     description: "Tool to showcase org projects, contributors from GitHub on a single webpage.",
+//     url: "https://github.com/ips610/Github-Oraganization-Dashboard-Creator",
+//     tech: ["react", "flask", "firebase", "nginx"],
+// },
 const SKILLS = {
-    languages: ["c", "c++", "html", "css", "javascript", "typescript", "dart", "python"],
-    frameworks: ["nodejs", "expressjs", "flask", "flutter"],
-    libraries: ["selenium", "mui", "react", "next"],
-    databases: ["mysql", "mongodb", "firebase", "appwrite"],
-    devTools: ["nginx", "vscode", "docker", "i-use-popos-btw", "git", "github", "azure", "bash", "aftereffects", "figma", "illustrator"],
+    languages: ["c", "c++", "css", "javascript", "typescript", "dart", "python","php"],
+    frameworks: ["nodejs", "expressjs", "flask", "flutter", "next"],
+    libraries: ["selenium", "mui", "react","motion", "sklearn","opencv","threejs","streamlit"],
+    databases: ["mysql","postgres-sql", "mongodb", "firebase", "appwrite"],
+    devTools: ["nginx", "vscode", "docker", "i-use-popos-btw", "git", "github", "azure","aws", "bash", "aftereffects", "figma", "github-actions", "ollama"],
 };
 
 const flattenedSkills = Object.values(SKILLS).flat();
@@ -55,7 +84,7 @@ const step = 1 / (PROJECTS.length);
 
 function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECTS[0], index: number, scrollYProgress: MotionValue<number> }) {
     const start = index * step;
-    const midStart = start + step * (index == 1 ? 0.01 : 0.1);
+    const midStart = start + (index == 1 ? 0.01 : 0.1);
     const midEnd = start + step * (index == 1 ? 1 : 0.9);
     const end = (index + 1) * step;
     const opacity = useTransform(scrollYProgress, [start, midStart, midEnd, end], [0, 1, 1, 0]);
@@ -75,9 +104,13 @@ function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECT
             <div className="bg-white/60 backdrop-blur-sm md:w-[38vw] md:aspect-square md:rounded-full text-black flex flex-col gap-2 items-center justify-center p-[20%]">
                 <h1 className="font-semibold text-3xl">{project.name}</h1>
                 <p className="text-md text-center">{project.description}</p>
-                <Button href={project.url} className="text-black border-2 border-black z-50">
-                    View Project
-                </Button>
+                {project.url!=="" ? (
+                    <Button href={project.url} className="text-black border-2 border-black z-50">
+                        View Project
+                    </Button>
+                ) : (
+                    <Button className="text-black border-2 border-black z-50">Coming Soon</Button>
+                )}
             </div>
         </motion.div>
     );
@@ -90,7 +123,7 @@ export default function Projects() {
 
     const fadeIn = useTransform(
         scrollYProgress,
-        [0.05, 1 / (PROJECTS.length), 1 - 1 / (PROJECTS.length), 0.99],
+        [0.05, 1 / (PROJECTS.length), 1 - 1 / (PROJECTS.length)+0.05, 0.99],
         [0, 1, 1, 0]
     );
 
@@ -182,7 +215,7 @@ export default function Projects() {
                                     onMouseLeave={handleMouseLeave}
                                 >
                                     <motion.img
-                                        className="w-12 h-12"
+                                        className="w-11 h-11"
                                         src={`/skills/${skill.skill}.svg`}
                                         style={{
                                             transform: `scale(${isInTech ? 1.5 : 1})`,

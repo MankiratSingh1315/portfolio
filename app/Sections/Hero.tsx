@@ -4,12 +4,7 @@ import Image from 'next/image';
 import Button from '../components/Button';
 import { useRef } from 'react';
 import { MENULINKS } from '../components/Menu';
-
-const SOCIAL_LINKS = {
-    linkedin: "https://www.linkedin.com/in/mankiratsingh1315/",
-    github: "https://github.com/MankiratSingh1315",
-    instagram: "https://www.instagram.com/mankiratsingh1315/",
-};
+import { SOCIAL_LINKS } from '@/constants';
 
 const RenderSocialLinks = (): React.ReactNode =>
     (Object.keys(SOCIAL_LINKS) as (keyof typeof SOCIAL_LINKS)[]).map((el) => (

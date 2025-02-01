@@ -295,7 +295,7 @@ export default function ExpAndAcheivements() {
                     </div>
                     <div className="mt-12">
                         <motion.h2 className="text-2xl font-bold mt-4 text-white">
-                            Accomplishments
+                            College Societies
                         </motion.h2>
                         {accomplishments.length > 0 && (
                             <div className="grid gap-10 grid-cols-1">

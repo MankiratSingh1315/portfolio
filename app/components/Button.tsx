@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 interface ButtonProps {
     children: React.ReactNode;
-    href: string;
+    href?: string;
     className?: string;
 }
 
@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({ children, href, className }) => {
             whileTap={{ scale: 0.9 }}
             className={`text-xl rounded-md cursor-pointer font-extrabold py-2 px-7 ${className}`}
         >
-            <a href={href}>{children}</a>
+            {href ? <a href={href}>{children}</a> : children}
         </motion.button>
     );
 };
