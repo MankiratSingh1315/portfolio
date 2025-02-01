@@ -19,21 +19,25 @@ export default function Intro() {
 
     return (
         <>
-            <div className="h-[100vh] bg-transparent text-white">
-                <motion.div className="relative hidden h-full w-full place-items-center md:grid"
+            <div className="h-screen bg-transparent text-white">
+                <motion.div
+                    className="relative flex h-full w-full flex-col items-center justify-center p-4 md:grid md:place-items-center"
                     initial={{ opacity: 1 }}
                     animate={{ opacity: 0 }}
                     transition={{ delay: introTime.del + introTime.in, duration: introTime.out }}
                 >
                     <motion.h1
-                        className="heading-lg absolute max-w-[1200px] origin-center"
+                        className="heading-lg origin-center max-w-[1200px]"
                         initial={{ textAlign: "center", opacity: 0 }}
                         animate={{ textAlign: "left", opacity: 1 }}
                         transition={{ duration: introTime.in }}
                     >
-                        Hi, I am <span className="hero-heading inline-block">
+                        Hi, I am{" "}
+                        <span className="hero-heading inline-block">
                             <div className="glitch-wrapper inline-block">
-                                <div className="glitch" data-text="Mankirat">Mankirat</div>
+                                <div className="glitch" data-text="Mankirat">
+                                    Mankirat
+                                </div>
                             </div>
                         </span>
                     </motion.h1>
