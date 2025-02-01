@@ -142,7 +142,7 @@ interface Milestone {
 const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
     return (
         <motion.div
-            className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 w-[35vw] mt-5"
+            className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 w-[60vw] md:w-[35vw] mt-5"
             whileInView={{ scale: 1.1, transformOrigin: 'left' }}
             transition={{ duration: 0.3 }}
             viewport={{ amount: 1, once: false }}
@@ -183,6 +183,9 @@ const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
                                             />
                                         </svg>
                                     </span>
+                                </p>
+                                <p className="block text-sm font-medium leading-5 text-slate-200">
+                                    {milestone.subtitle}
                                 </p>
                             </a>
                         ) : (
@@ -238,7 +241,7 @@ export default function ExpAndAcheivements() {
         return () => clearInterval(interval);
     }, [imagesWithRelatedImage]);
     return (
-        <motion.div className="grid grid-cols-2 justify-items-center w-screen pt-[40vh]"
+        <motion.div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-screen pt-[35vh]"
             style={{
                 opacity: opacity
             }}
@@ -264,18 +267,6 @@ export default function ExpAndAcheivements() {
                         )}
                     </div>
 
-                    <div className="mt-12">
-                        <motion.h2 className="text-2xl font-bold mt-4 text-white">
-                            Accomplishments
-                        </motion.h2>
-                        {accomplishments.length > 0 && (
-                            <div className="grid gap-10 grid-cols-1">
-                                {accomplishments.map((milestone, index) => (
-                                    <MilestoneComponent key={index} milestone={milestone} />
-                                ))}
-                            </div>
-                        )}
-                    </div>
 
                     <div className="mt-12">
                         <motion.h2 className="text-2xl font-bold mt-4 text-white">
@@ -302,11 +293,23 @@ export default function ExpAndAcheivements() {
                             </div>
                         )}
                     </div>
+                    <div className="mt-12">
+                        <motion.h2 className="text-2xl font-bold mt-4 text-white">
+                            Accomplishments
+                        </motion.h2>
+                        {accomplishments.length > 0 && (
+                            <div className="grid gap-10 grid-cols-1">
+                                {accomplishments.map((milestone, index) => (
+                                    <MilestoneComponent key={index} milestone={milestone} />
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </section>
 
 
-            <div className="h-full">
+            <div className="h-full hidden md:block">
                 <div
                     className="sticky top-0 h-screen flex items-center justify-center"
                 >

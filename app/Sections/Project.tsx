@@ -64,15 +64,15 @@ function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECT
     return (
         <motion.div
             key={index}
-            className="absolute h-screen flex flex-col items-center justify-center"
+            className="absolute md:h-screen min-h-[40vh] flex flex-col items-center justify-center overflow-hidden"
             style={{ opacity, zIndex }}
         >
             <img
                 src={project.image}
                 alt={project.name}
-                className="rounded-full absolute -z-10 object-cover w-[38vw] aspect-square object-top overflow-hidden"
+                className="md:rounded-full absolute -z-10 object-fill md:object-cover md:w-[38vw] w-[90vw] md:aspect-square object-top overflow-hidden"
             />
-            <div className="bg-white/60 backdrop-blur-sm w-[38vw] aspect-square rounded-full text-black flex flex-col gap-2 items-center justify-center p-[20%]">
+            <div className="bg-white/60 backdrop-blur-sm md:w-[38vw] md:aspect-square md:rounded-full text-black flex flex-col gap-2 items-center justify-center p-[20%]">
                 <h1 className="font-semibold text-3xl">{project.name}</h1>
                 <p className="text-md text-center">{project.description}</p>
                 <Button href={project.url} className="text-black border-2 border-black z-50">
@@ -133,13 +133,16 @@ export default function Projects() {
             <div
                 ref={projectRef}
                 className="relative w-screen"
-                style={{ height: `${(PROJECTS.length + 1) * 100}vh`, marginBottom: `-90vh` }}
+                style={{ height: `${(PROJECTS.length + 1) * 100}vh`, marginBottom: `-95vh` }}
             >
                 <motion.div
                     style={{ opacity: fadeIn }}
-                    className="flex gap-32 h-screen w-screen text-white items-center justify-center sticky top-0"
+                    className="flex md:flex-row flex-col gap-32 h-screen w-screen text-white items-center justify-center sticky top-0"
                 >
-                    <div className="flex flex-col gap-5 text-right">
+                    <h1 className="heading-lg md:hidden"
+                        id={projectSectionRef}
+                    >Projects</h1>
+                    <div className="flex-col gap-5 text-right md:block hidden">
                         <h1 className="heading-md"
                             id={projectSectionRef}
                         >Projects</h1>
@@ -163,13 +166,13 @@ export default function Projects() {
                         </div>
                     </div>
 
-                    <div className="relative flex justify-center items-center w-[43vw] aspect-square rounded-full">
+                    <div className="relative flex justify-center items-center md:w-[43vw]  w-[90vw] aspect-square rounded-full">
                         {skillPositions.map((skill) => {
                             const isInTech = currProjIndex >= 0 ? PROJECTS[currProjIndex].tech.includes(skill.skill) : false;
                             return (
                                 <div
                                     key={skill.skill}
-                                    className="absolute z-30"
+                                    className="absolute z-30 hidden md:block"
                                     style={{
                                         transform: `translate(${skill.x}vw, ${skill.y}vw)`,
                                         cursor: 'none',

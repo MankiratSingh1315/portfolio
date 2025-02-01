@@ -44,10 +44,10 @@ export default function Hero() {
             id={heroSectionRef}
             
         >
-            <motion.div className="h-screen w-screen text-white flex justify-center items-center gap-28 sticky top-0"
+            <motion.div className="h-screen w-screen text-white flex flex-col md:flex-row justify-center items-center md:gap-28 gap-8 sticky top-0"
                 style={{ opacity }}
             >
-                <div className="h-full flex flex-col gap-5 justify-center items-end">
+                <div className="md:h-full flex flex-col gap-5 justify-center md:items-end items-center">
                     <motion.h1
                         className="heading-md hero-heading"
                         initial={{ opacity: 0, x: -20 }}
@@ -97,7 +97,7 @@ export default function Hero() {
                     </motion.div>
                 </div>
                 <motion.div
-                    className="rounded-full overflow-hidden bg-white"
+                    className="rounded-full aspect-square overflow-hidden bg-white m-[10vw] md:m-0"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 1, duration: 0.5 }}
