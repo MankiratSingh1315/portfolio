@@ -33,18 +33,18 @@ const { ref: heroSectionRef } = MENULINKS[0]
 export default function Hero() {
     const heroScrollRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: heroScrollRef });
-    const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
     return (
         <div
             style={{
-                height: '200vh',
-                marginBottom: '-200vh',
+                height: '120vh',
+                marginBottom: '-120vh',
             }}
             ref={heroScrollRef}
             id={heroSectionRef}
             
         >
-            <motion.div className="h-screen w-screen text-white flex flex-col md:flex-row justify-center items-center md:gap-28 gap-8 sticky top-0"
+            <motion.div className="h-screen w-screen text-white flex flex-col md:flex-row justify-center items-center md:gap-28 gap-8 sticky top-0 z-50"
                 style={{ opacity }}
             >
                 <div className="md:h-full flex flex-col gap-5 justify-center md:items-end items-center">

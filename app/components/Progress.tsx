@@ -17,7 +17,9 @@ const ProgressIndicator = () => {
     useEffect(() => {
         const { matches } = window.matchMedia("(prefers-reduced-motion: no-preference)");
 
-        matches && window.addEventListener("scroll", calculateProgress);
+        if (matches) {
+            window.addEventListener("scroll", calculateProgress);
+        }
 
         return () => window.removeEventListener("scroll", calculateProgress);
     }, [progress]);

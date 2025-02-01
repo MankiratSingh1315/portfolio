@@ -70,7 +70,7 @@ function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECT
             <img
                 src={project.image}
                 alt={project.name}
-                className="md:rounded-full absolute -z-10 object-fill md:object-cover md:w-[38vw] w-[90vw] md:aspect-square object-top overflow-hidden"
+                className="md:rounded-full absolute object-fill md:object-cover md:w-[38vw] w-[90vw] md:aspect-square object-top overflow-hidden"
             />
             <div className="bg-white/60 backdrop-blur-sm md:w-[38vw] md:aspect-square md:rounded-full text-black flex flex-col gap-2 items-center justify-center p-[20%]">
                 <h1 className="font-semibold text-3xl">{project.name}</h1>
@@ -132,7 +132,7 @@ export default function Projects() {
         <>
             <div
                 ref={projectRef}
-                className="relative w-screen"
+                className="w-screen"
                 style={{ height: `${(PROJECTS.length + 1) * 100}vh`, marginBottom: `-95vh` }}
             >
                 <motion.div
