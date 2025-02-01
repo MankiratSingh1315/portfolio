@@ -7,6 +7,7 @@ import { useAppContext, AppProvider } from "./AppContext";
 import ExpAndAcheivements from "./Sections/ExpAndAcheivement";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ProgressIndicator from "./components/Progress";
 
 function Main() {
   const { isIntroPlayed } = useAppContext();
@@ -16,6 +17,7 @@ function Main() {
       {isIntroPlayed && (
         <>
           <Header />
+          <ProgressIndicator />
           <Hero />
           <Projects />
           <ExpAndAcheivements />
