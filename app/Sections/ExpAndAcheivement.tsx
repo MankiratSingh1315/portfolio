@@ -80,8 +80,8 @@ export const TIMELINE: Milestone[] = [
 
     {
         description: "Led teams of 20+ developers in open-source projects and large-scale events like Makeathon 6.",
-        title: "Microsoft Learn Student Chapter, TIET",
-        subtitle: "Technical Head",
+        title: "Technical Head",
+        subtitle: "Microsoft Learn Student Chapter, TIET",
         type: "accomplishment",
         timeline: "Nov 2022 - Present",
         relatedUrl: 'https://mlsctiet.com/',
@@ -100,8 +100,8 @@ export const TIMELINE: Milestone[] = [
         ],
     },
     {
-        title: "OWASP Student Chapter, TIET",
-        subtitle: "Core Member",
+        title: "Core Member",
+        subtitle: "OWASP Student Chapter, TIET",
         type: "accomplishment",
         timeline: "Nov 2022 - Sep 2023",
         relatedUrl: 'https://owasptiet.com/',
@@ -116,8 +116,8 @@ export const TIMELINE: Milestone[] = [
         ],
     },
     {
-        title: "PLEX - The Product Managers' Club",
-        subtitle: "Official Member | Sep 2023",
+        title: "Official Member",
+        subtitle: "PLEX - The Product Managers' Club",
         type: "accomplishment",
         timeline: "Sep 2023 - Present",
         relatedUrl: null,

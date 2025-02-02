@@ -101,7 +101,7 @@ function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECT
                 alt={project.name}
                 className="md:rounded-full absolute object-fill md:object-cover md:w-[38vw] w-[90vw] md:aspect-square object-top overflow-hidden"
             />
-            <div className="bg-white/60 backdrop-blur-sm md:w-[38vw] md:aspect-square md:rounded-full text-black flex flex-col gap-2 items-center justify-center p-[20%]">
+            <div className="bg-white/60 backdrop-blur-sm md:w-[38vw] md:aspect-square md:rounded-full text-black flex flex-col gap-2 items-center justify-center md:p-[20%] p-[7%]">
                 <h1 className="font-semibold text-3xl">{project.name}</h1>
                 <p className="text-md text-center">{project.description}</p>
                 {project.url!=="" ? (
