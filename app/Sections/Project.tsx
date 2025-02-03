@@ -36,22 +36,15 @@ export const PROJECTS = [
         name: "Thapar Food Festival Website",
         image: "/projects/tff.png",
         description: "Developed the official website for North India’s largest food festival, featuring a visually appealing gallery page viewed by over 5,000 users. Implemented an engaging UI/UX using React, JavaScript, and CSS to ensure a seamless browsing experience. Optimized image loading and website performance for faster access.",
-        url: "https://www.thaparfoodfestival.in/",
+        url: "https://thaparfoodfestival.vercel.app/",
         tech: ["react", "javascript", "css"],
     },
     {
-        name: "Makethon 5 App",
+        name: "Makethon 6 App",
         image: "/projects/make5app.png",
         description: "Designed a comprehensive Flutter-based mobile application for hackathon management, catering to 500+ participants and facilitating 100+ project submissions. Integrated Firebase for real-time notifications, authentication, and data storage. Enhanced user experience with an intuitive dashboard for tracking events, teams, and project progress.",
         url: "https://makeathon6.mlsctiet.com/Makeathon6.apk",
         tech: ["flutter", "firebase"],
-    },
-    {
-        name: "Recruitment Portal",
-        image: "/projects/recruitment.png",
-        description: "Developed a recruitment management portal for MLSC TIET, featuring an interactive quiz system for candidate evaluation. The platform, used by over 200 students, was built using React, NodeJS, and Appwrite for backend services. Integrated Firebase authentication to provide secure access and real-time result processing.",
-        url: "https://quiz.mlsctiet.com/",
-        tech: ["react", "appwrite", "firebase"],
     },
     {
         name: "IRC Server in C",
@@ -84,7 +77,7 @@ const step = 1 / (PROJECTS.length);
 
 function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECTS[0], index: number, scrollYProgress: MotionValue<number> }) {
     const start = index * step;
-    const midStart = start + (index == 1 ? 0.01 : 0.1);
+    const midStart = start + (index == 1 ? 0.01 : 0.02);
     const midEnd = start + step * (index == 1 ? 1 : 0.9);
     const end = (index + 1) * step;
     const opacity = useTransform(scrollYProgress, [start, midStart, midEnd, end], [0, 1, 1, 0]);
@@ -101,7 +94,7 @@ function ProjDesc({ project, index, scrollYProgress }: { project: typeof PROJECT
                 alt={project.name}
                 className="md:rounded-full absolute object-fill md:object-cover md:w-[38vw] w-[90vw] md:aspect-square object-top overflow-hidden"
             />
-            <div className="bg-white/60 backdrop-blur-sm md:w-[38vw] md:aspect-square md:rounded-full text-black flex flex-col gap-2 items-center justify-center md:p-[20%] p-[7%]">
+            <div className="bg-white/60 backdrop-blur-sm md:w-[38vw] md:h-[38vw] md:rounded-full text-black flex flex-col gap-2 items-center justify-center md:p-[20%] p-[7%] text-center">
                 <h1 className="font-semibold text-3xl">{project.name}</h1>
                 <p className="text-md text-center">{project.description}</p>
                 {project.url!=="" ? (
@@ -123,7 +116,7 @@ export default function Projects() {
 
     const fadeIn = useTransform(
         scrollYProgress,
-        [0.05, 1 / (PROJECTS.length), 1 - 1 / (PROJECTS.length)+0.05, 0.99],
+        [0.02, 1 / (PROJECTS.length), 1 - 1 / (PROJECTS.length)+0.05, 0.99],
         [0, 1, 1, 0]
     );
 
@@ -187,7 +180,7 @@ export default function Projects() {
                                         key={index}
                                         className="font-semibold text-2xl transition-transform"
                                         style={{
-                                            transform: isCurrentProject ? 'scale(1.3)' : 'scale(1)',
+                                            transform: isCurrentProject ? 'scale(1.2)' : 'scale(1)',
                                             transition: 'transform 0.2s ease-out',
                                             transformOrigin: 'right'
                                         }}

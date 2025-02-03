@@ -231,7 +231,7 @@ export default function ExpAndAcheivements() {
     const imagesWithRelatedImage = TIMELINE.filter(m => m.relatedImage);
 
     const { scrollYProgress } = useScroll({ target: heroScrollRef });
-    const opacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+    const opacity = useTransform(scrollYProgress, [0, 0.05], [0, 1]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
@@ -241,7 +241,7 @@ export default function ExpAndAcheivements() {
         return () => clearInterval(interval);
     }, [imagesWithRelatedImage]);
     return (
-        <motion.div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-screen pt-[35vh]"
+        <motion.div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-screen pt-[30vh]"
             style={{
                 opacity: opacity
             }}
