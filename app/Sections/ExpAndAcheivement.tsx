@@ -145,7 +145,7 @@ const MilestoneComponent = ({ milestone }: { milestone: Milestone }) => {
             className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 w-[60vw] md:w-[35vw] mt-5"
             whileInView={{ scale: 1.1, transformOrigin: 'left' }}
             transition={{ duration: 0.3 }}
-            viewport={{ amount: 1, once: false }}
+            // viewport={{ amount: 1, once: true }}
         >
             <div className="absolute -inset-x-2 -inset-y-2 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-4 lg:block lg:group-hover:bg-gray-800/20 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg">
             </div>
