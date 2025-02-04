@@ -211,9 +211,13 @@ export default function Projects() {
                                         className="w-11 h-11"
                                         src={`/skills/${skill.skill}.svg`}
                                         style={{
-                                            transform: `scale(${isInTech ? 1.5 : 1})`,
+                                            opacity: isInTech ? 1 : 0.5,
+                                            filter: !isInTech ? 'none' : 'drop-shadow(0px 0px 3px rgba(255, 255, 255, 0.3))',
+                                            transform: `scale(${isInTech ? 1.5 : 0.9})`,
                                             transition: 'transform 0.2s ease-out',
+                                        
                                         }}
+                                        whileHover={{opacity: 1}}
                                     />
                                 </div>
                             );
