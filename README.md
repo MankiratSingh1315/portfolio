@@ -1,5 +1,5 @@
 # 🏆 Mankirat Singh's Portfolio
-
+### ⭐ Do star the repo if you like it!
 Welcome to the **source code** of my portfolio website – [mankiratsingh.com](https://mankiratsingh.com)! 🚀  
 
 This portfolio is built from scratch using **Next.js** and **Motion**, combining performance, smooth animations, and a **UI straight from a developer's imagination**.  
